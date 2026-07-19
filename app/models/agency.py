@@ -1,38 +1,70 @@
 from sqlalchemy import Boolean, Column, String
 from sqlalchemy.orm import relationship
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from app.models.base import BaseModel
-from app.models.base import Base
+
 
 class Agency(BaseModel):
+    __tablename__ = "agencies"
+
     contacts = relationship(
         "Contact",
         back_populates="agency",
         cascade="all, delete-orphan",
         passive_deletes=True,
     )
+
     services = relationship(
         "Service",
         back_populates="agency",
         cascade="all, delete-orphan",
         passive_deletes=True,
     )
-    __tablename__ = "agencies"
 
-    name = Column(String(200), nullable=False, index=True)
+    locations = relationship(
+        "Location",
+        back_populates="agency",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
 
-    short_name = Column(String(100))
+    name = Column(
+        String(200),
+        nullable=False,
+        index=True,
+    )
 
-    category = Column(String(100), nullable=False)
+    short_name = Column(
+        String(100),
+    )
 
-    country = Column(String(100), nullable=False)
+    category = Column(
+        String(100),
+        nullable=False,
+    )
 
-    city = Column(String(100))
+    country = Column(
+        String(100),
+        nullable=False,
+    )
 
-    address = Column(String(300))
+    city = Column(
+        String(100),
+    )
 
-    website = Column(String(255))
+    address = Column(
+        String(300),
+    )
 
-    description = Column(String(1000))
+    website = Column(
+        String(255),
+    )
 
-    is_active = Column(Boolean, default=True)
+    description = Column(
+        String(1000),
+    )
+
+    is_active = Column(
+        Boolean,
+        default=True,
+    )
