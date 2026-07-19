@@ -1,14 +1,21 @@
 from sqlalchemy import Boolean, Column, String
+from sqlalchemy.orm import relationship
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.models.base import BaseModel
-
+from app.models.base import Base
 
 class Agency(BaseModel):
     contacts = relationship(
-    "Contact",
-    back_populates="agency",
-    cascade="all, delete-orphan",
-    passive_deletes=True,
+        "Contact",
+        back_populates="agency",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
+    services = relationship(
+        "Service",
+        back_populates="agency",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
     )
     __tablename__ = "agencies"
 

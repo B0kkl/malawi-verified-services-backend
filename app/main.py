@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+import app.database.base  # noqa: F401
 from app.api.v1.router import api_router
 from app.core.config import settings
 
