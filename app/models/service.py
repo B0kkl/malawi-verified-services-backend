@@ -49,3 +49,9 @@ class Service(BaseModel):
         cascade="all, delete-orphan",
         passive_deletes=True,
     )
+    faq_items = relationship(
+        "FAQ",
+        back_populates="service",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
