@@ -1,8 +1,10 @@
-from sqlalchemy.orm import Session
-
+from sqlalchemy import or_
+from sqlalchemy.orm import Session, selectinload
+from app.models.agency import Agency
+from app.models.location import Location
 from app.models.service import Service
 from app.schemas.service import ServiceCreate, ServiceUpdate
-
+from app.models.agency import Agency
 
 class ServiceRepository:
     def __init__(self, db: Session):
@@ -41,7 +43,68 @@ class ServiceRepository:
             .limit(limit)
             .all()
         )
+    
+    def search(
+        self,
+        search: str | None = None,
+        category: str | None = None,
+        agency_id: int | None = None,
+        district: str | None = None,
+        online_available: bool | None = None,
+        is_active: bool | None = None,
+        skip: int = 0,
+        limit: int = 100,
+    ) -> list[Service]:
 
+        query = (
+            self.db.query(Service)
+            .join(Agency)
+            .outerjoin(Location)
+        )
+
+        if search:
+            keyword = f"%{search}%"
+
+            query = query.filter(
+                or_(
+                    Service.name.ilike(keyword),
+                    Service.description.ilike(keyword),
+                    Agency.name.ilike(keyword),
+                )
+            )
+
+        if category:
+            query = query.filter(
+                Service.category == category
+            )
+
+        if agency_id:
+            query = query.filter(
+                Service.agency_id == agency_id
+            )
+
+        if district:
+            query = query.filter(
+                Location.district == district
+            )
+
+        if online_available is not None:
+            query = query.filter(
+                Service.online_available == online_available
+            )
+
+        if is_active is not None:
+            query = query.filter(
+                Service.is_active == is_active
+            )
+
+        return (
+            query.distinct()
+            .offset(skip)
+            .limit(limit)
+            .all()
+        )
+    
     def get_by_agency(
         self,
         agency_id: int,
@@ -88,3 +151,23 @@ class ServiceRepository:
     def delete(self, service: Service) -> None:
         self.db.delete(service)
         self.db.commit()
+
+
+    def get_details(self, service_id: int) -> Service | None:
+        return (
+            self.db.query(Service)
+            .options(
+                selectinload(Service.agency).selectinload(
+                    Agency.contacts
+                ),
+                selectinload(Service.agency).selectinload(
+                    Agency.locations
+                ),
+                selectinload(Service.requirement_items),
+                selectinload(Service.fee_items),
+                selectinload(Service.faq_items),
+                selectinload(Service.document_items),
+            )
+            .filter(Service.id == service_id)
+            .first()
+            )

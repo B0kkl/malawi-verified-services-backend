@@ -3,6 +3,14 @@ from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, HttpUrl
 
+from app.schemas.agency import AgencyResponse
+from app.schemas.contact import ContactResponse
+from app.schemas.document import DocumentResponse
+from app.schemas.faq import FAQResponse
+from app.schemas.fee import FeeResponse
+from app.schemas.location import LocationResponse
+from app.schemas.requirement import RequirementResponse
+
 
 class ServiceBase(BaseModel):
     name: str = Field(min_length=2, max_length=200)
@@ -61,3 +69,15 @@ class ServiceResponse(ServiceBase):
     updated_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class ServiceDetailsResponse(ServiceResponse):
+    agency: AgencyResponse
+
+    requirement_items: list[RequirementResponse] = []
+    fee_items: list[FeeResponse] = []
+    faq_items: list[FAQResponse] = []
+    document_items: list[DocumentResponse] = []
+
+    contacts: list[ContactResponse] = []
+    locations: list[LocationResponse] = []

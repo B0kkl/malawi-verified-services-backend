@@ -55,3 +55,9 @@ class Service(BaseModel):
         cascade="all, delete-orphan",
         passive_deletes=True,
     )
+    document_items = relationship(
+        "Document",
+        back_populates="service",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
