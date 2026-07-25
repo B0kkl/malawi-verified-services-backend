@@ -1,7 +1,7 @@
-"""add service timestamps
+﻿"""add service timestamps
 
 Revision ID: b560f5bcda14
-Revises:
+Revises: a1c4e7f9b203
 Create Date: 2026-07-19 21:12:48.760737
 """
 
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 revision: str = "b560f5bcda14"
-down_revision: Union[str, Sequence[str], None] = None
+down_revision: Union[str, Sequence[str], None] = "a1c4e7f9b203"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -50,3 +50,4 @@ def upgrade() -> None:
 def downgrade() -> None:
     op.drop_column("services", "updated_at")
     op.drop_column("services", "created_at")
+

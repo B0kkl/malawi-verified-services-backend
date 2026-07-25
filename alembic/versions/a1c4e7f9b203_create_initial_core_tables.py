@@ -1,0 +1,342 @@
+﻿"""create initial core tables
+
+Revision ID: a1c4e7f9b203
+Revises:
+Create Date: 2026-07-26
+"""
+
+from typing import Sequence, Union
+
+from alembic import op
+import sqlalchemy as sa
+
+
+revision: str = "a1c4e7f9b203"
+down_revision: Union[str, Sequence[str], None] = None
+branch_labels: Union[str, Sequence[str], None] = None
+depends_on: Union[str, Sequence[str], None] = None
+
+
+def upgrade() -> None:
+    op.create_table(
+        "agencies",
+        sa.Column(
+            "name",
+            sa.String(length=200),
+            nullable=False,
+        ),
+        sa.Column(
+            "short_name",
+            sa.String(length=100),
+            nullable=True,
+        ),
+        sa.Column(
+            "category",
+            sa.String(length=100),
+            nullable=False,
+        ),
+        sa.Column(
+            "country",
+            sa.String(length=100),
+            nullable=False,
+        ),
+        sa.Column(
+            "city",
+            sa.String(length=100),
+            nullable=True,
+        ),
+        sa.Column(
+            "address",
+            sa.String(length=300),
+            nullable=True,
+        ),
+        sa.Column(
+            "website",
+            sa.String(length=255),
+            nullable=True,
+        ),
+        sa.Column(
+            "description",
+            sa.String(length=1000),
+            nullable=True,
+        ),
+        sa.Column(
+            "is_active",
+            sa.Boolean(),
+            nullable=True,
+        ),
+        sa.Column(
+            "id",
+            sa.Integer(),
+            nullable=False,
+        ),
+        sa.Column(
+            "created_at",
+            sa.DateTime(timezone=True),
+            server_default=sa.text("CURRENT_TIMESTAMP"),
+            nullable=True,
+        ),
+        sa.Column(
+            "updated_at",
+            sa.DateTime(timezone=True),
+            server_default=sa.text("CURRENT_TIMESTAMP"),
+            nullable=True,
+        ),
+        sa.PrimaryKeyConstraint("id"),
+    )
+
+    op.create_index(
+        op.f("ix_agencies_id"),
+        "agencies",
+        ["id"],
+        unique=False,
+    )
+
+    op.create_index(
+        op.f("ix_agencies_name"),
+        "agencies",
+        ["name"],
+        unique=False,
+    )
+
+    op.create_table(
+        "services",
+        sa.Column(
+            "agency_id",
+            sa.Integer(),
+            nullable=False,
+        ),
+        sa.Column(
+            "name",
+            sa.String(length=255),
+            nullable=False,
+        ),
+        sa.Column(
+            "category",
+            sa.String(length=150),
+            nullable=True,
+        ),
+        sa.Column(
+            "description",
+            sa.Text(),
+            nullable=True,
+        ),
+        sa.Column(
+            "requirements",
+            sa.Text(),
+            nullable=True,
+        ),
+        sa.Column(
+            "application_process",
+            sa.Text(),
+            nullable=True,
+        ),
+        sa.Column(
+            "processing_time",
+            sa.String(length=150),
+            nullable=True,
+        ),
+        sa.Column(
+            "fee_amount",
+            sa.Numeric(precision=12, scale=2),
+            nullable=True,
+        ),
+        sa.Column(
+            "fee_currency",
+            sa.String(length=10),
+            nullable=False,
+        ),
+        sa.Column(
+            "office_location",
+            sa.String(length=255),
+            nullable=True,
+        ),
+        sa.Column(
+            "online_available",
+            sa.Boolean(),
+            nullable=False,
+        ),
+        sa.Column(
+            "online_url",
+            sa.String(length=500),
+            nullable=True,
+        ),
+        sa.Column(
+            "contact_phone",
+            sa.String(length=100),
+            nullable=True,
+        ),
+        sa.Column(
+            "contact_email",
+            sa.String(length=255),
+            nullable=True,
+        ),
+        sa.Column(
+            "is_active",
+            sa.Boolean(),
+            nullable=False,
+        ),
+        sa.Column(
+            "id",
+            sa.Integer(),
+            nullable=False,
+        ),
+        sa.ForeignKeyConstraint(
+            ["agency_id"],
+            ["agencies.id"],
+        ),
+        sa.PrimaryKeyConstraint("id"),
+    )
+
+    op.create_index(
+        op.f("ix_services_agency_id"),
+        "services",
+        ["agency_id"],
+        unique=False,
+    )
+
+    op.create_index(
+        op.f("ix_services_id"),
+        "services",
+        ["id"],
+        unique=False,
+    )
+
+    op.create_table(
+        "contacts",
+        sa.Column(
+            "agency_id",
+            sa.Integer(),
+            nullable=False,
+        ),
+        sa.Column(
+            "full_name",
+            sa.String(length=150),
+            nullable=False,
+        ),
+        sa.Column(
+            "job_title",
+            sa.String(length=150),
+            nullable=True,
+        ),
+        sa.Column(
+            "department",
+            sa.String(length=150),
+            nullable=True,
+        ),
+        sa.Column(
+            "phone_number",
+            sa.String(length=50),
+            nullable=True,
+        ),
+        sa.Column(
+            "alternative_phone",
+            sa.String(length=50),
+            nullable=True,
+        ),
+        sa.Column(
+            "email",
+            sa.String(length=255),
+            nullable=True,
+        ),
+        sa.Column(
+            "office_hours",
+            sa.String(length=150),
+            nullable=True,
+        ),
+        sa.Column(
+            "notes",
+            sa.Text(),
+            nullable=True,
+        ),
+        sa.Column(
+            "is_primary",
+            sa.Boolean(),
+            nullable=False,
+        ),
+        sa.Column(
+            "is_active",
+            sa.Boolean(),
+            nullable=False,
+        ),
+        sa.Column(
+            "id",
+            sa.Integer(),
+            nullable=False,
+        ),
+        sa.Column(
+            "created_at",
+            sa.DateTime(timezone=True),
+            server_default=sa.text("CURRENT_TIMESTAMP"),
+            nullable=True,
+        ),
+        sa.Column(
+            "updated_at",
+            sa.DateTime(timezone=True),
+            server_default=sa.text("CURRENT_TIMESTAMP"),
+            nullable=True,
+        ),
+        sa.ForeignKeyConstraint(
+            ["agency_id"],
+            ["agencies.id"],
+            ondelete="CASCADE",
+        ),
+        sa.PrimaryKeyConstraint("id"),
+    )
+
+    op.create_index(
+        op.f("ix_contacts_agency_id"),
+        "contacts",
+        ["agency_id"],
+        unique=False,
+    )
+
+    op.create_index(
+        op.f("ix_contacts_email"),
+        "contacts",
+        ["email"],
+        unique=False,
+    )
+
+    op.create_index(
+        op.f("ix_contacts_id"),
+        "contacts",
+        ["id"],
+        unique=False,
+    )
+
+
+def downgrade() -> None:
+    op.drop_index(
+        op.f("ix_contacts_id"),
+        table_name="contacts",
+    )
+    op.drop_index(
+        op.f("ix_contacts_email"),
+        table_name="contacts",
+    )
+    op.drop_index(
+        op.f("ix_contacts_agency_id"),
+        table_name="contacts",
+    )
+    op.drop_table("contacts")
+
+    op.drop_index(
+        op.f("ix_services_id"),
+        table_name="services",
+    )
+    op.drop_index(
+        op.f("ix_services_agency_id"),
+        table_name="services",
+    )
+    op.drop_table("services")
+
+    op.drop_index(
+        op.f("ix_agencies_name"),
+        table_name="agencies",
+    )
+    op.drop_index(
+        op.f("ix_agencies_id"),
+        table_name="agencies",
+    )
+    op.drop_table("agencies")
