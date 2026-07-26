@@ -21,6 +21,7 @@ app.add_middleware(
         "http://127.0.0.1:5502",
         "http://localhost:5502",
         "https://malawi-verified-services-frontend.vercel.app",
+        "https://malawi-verified-services-admin.vercel.app",
     ],
     allow_credentials=False,
     allow_methods=[
