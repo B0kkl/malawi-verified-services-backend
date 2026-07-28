@@ -38,3 +38,5 @@ htmlcov/
 Thumbs.db
 # Local inspection reports
 service_details_crud_inspection.txt
+
+*.bak
