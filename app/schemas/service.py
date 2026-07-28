@@ -1,4 +1,4 @@
-from datetime import datetime
+﻿from datetime import datetime
 from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, HttpUrl
@@ -28,7 +28,7 @@ class ServiceBase(BaseModel):
     online_available: bool = False
     online_url: HttpUrl | None = None
 
-    contact_phone: str | None = Field(default=None, max_length=50)
+    contact_phone: str | None = Field(default=None, max_length=255)
     contact_email: EmailStr | None = None
 
     is_active: bool = True
@@ -56,7 +56,7 @@ class ServiceUpdate(BaseModel):
     online_available: bool | None = None
     online_url: HttpUrl | None = None
 
-    contact_phone: str | None = Field(default=None, max_length=50)
+    contact_phone: str | None = Field(default=None, max_length=255)
     contact_email: EmailStr | None = None
 
     is_active: bool | None = None
@@ -81,3 +81,4 @@ class ServiceDetailsResponse(ServiceResponse):
 
     contacts: list[ContactResponse] = []
     locations: list[LocationResponse] = []
+

@@ -1,0 +1,314 @@
+{
+  "metadata": {
+    "title": "Malawi Verified Services V2.3 — Priority Verification and Location Enrichment",
+    "version": "2.3",
+    "generated_date": "2026-07-28",
+    "incremental": true,
+    "mode": "PATCH existing V2.1 and V2.2 records; create only explicitly defined missing services",
+    "agency_enrichment_count": 10,
+    "service_specific_enrichment_count": 5,
+    "coverage_note": "This pack performs high-confidence enrichment for priority institutions. It does not claim that all 1,485 existing services are fully verified.",
+    "verification_rule": "Only records with evidence based on an official page or official form should receive the strongest verification status."
+  },
+  "agency_enrichments": [
+    {
+      "agency_name": "Department of Immigration and Citizenship Services",
+      "agency_patch": {
+        "address": "Immigration Headquarters, West Wing Government Building, Victoria Avenue, P.O. Box 331, Blantyre, Malawi",
+        "city": "Blantyre",
+        "country": "Malawi",
+        "website": "https://www.immigration.gov.mw/"
+      },
+      "service_defaults": {
+        "office_location": "Immigration Headquarters, West Wing Government Building, Victoria Avenue, Blantyre",
+        "contact_phone": "+265 1 832 565",
+        "online_available": true,
+        "online_url": "https://www.immigration.gov.mw/"
+      },
+      "service_overrides": {
+        "Apply for an ePassport": {
+          "online_url": "https://www.epassport.gov.mw/",
+          "application_process": "Complete online pre-registration, upload the required documents, schedule an appointment, then attend the selected passport centre for biometrics and verification."
+        },
+        "Malawi visa application": {
+          "online_url": "https://evisa.gov.mw/",
+          "application_process": "Complete the official eVisa application online, upload supporting documents, pay the visa and convenience fees by supported card, and monitor the application email notifications."
+        }
+      },
+      "source_url": "https://www.immigration.gov.mw/contact-us/",
+      "verified_on": "2026-07-28",
+      "evidence": "official-contact-page"
+    },
+    {
+      "agency_name": "Immigration Headquarters Blantyre",
+      "agency_patch": {
+        "address": "West Wing Government Building, Victoria Avenue, P.O. Box 331, Blantyre, Malawi",
+        "city": "Blantyre",
+        "country": "Malawi",
+        "website": "https://www.immigration.gov.mw/"
+      },
+      "service_defaults": {
+        "office_location": "West Wing Government Building, Victoria Avenue, Blantyre",
+        "contact_phone": "+265 1 832 565",
+        "online_available": true,
+        "online_url": "https://www.immigration.gov.mw/"
+      },
+      "source_url": "https://www.immigration.gov.mw/contact-us/",
+      "verified_on": "2026-07-28",
+      "evidence": "official-contact-page"
+    },
+    {
+      "agency_name": "Immigration Regional Office Lilongwe",
+      "agency_patch": {
+        "address": "P.O. Box 1272, Lilongwe, Malawi",
+        "city": "Lilongwe",
+        "country": "Malawi",
+        "website": "https://www.immigration.gov.mw/"
+      },
+      "service_defaults": {
+        "office_location": "Immigration Office, P.O. Box 1272, Lilongwe",
+        "contact_phone": "+265 1 759 270",
+        "online_available": true,
+        "online_url": "https://www.immigration.gov.mw/"
+      },
+      "source_url": "https://www.immigration.gov.mw/contact-us/",
+      "verified_on": "2026-07-28",
+      "evidence": "official-contact-page"
+    },
+    {
+      "agency_name": "Immigration Regional Office Mzuzu",
+      "agency_patch": {
+        "address": "P.O. Box 600, Mzuzu, Malawi",
+        "city": "Mzuzu",
+        "country": "Malawi",
+        "website": "https://www.immigration.gov.mw/"
+      },
+      "service_defaults": {
+        "office_location": "Immigration Office, P.O. Box 600, Mzuzu",
+        "contact_phone": "+265 1 311 474",
+        "online_available": true,
+        "online_url": "https://www.immigration.gov.mw/"
+      },
+      "source_url": "https://www.immigration.gov.mw/contact-us/",
+      "verified_on": "2026-07-28",
+      "evidence": "official-contact-page"
+    },
+    {
+      "agency_name": "Companies Registration and Intellectual Property Centre",
+      "agency_patch": {
+        "address": "3rd and 4th Floor, Fatima Arcade, Haile Selassie Road, P.O. Box 100, Blantyre, Malawi",
+        "city": "Blantyre",
+        "country": "Malawi",
+        "website": "https://registrargeneral.gov.mw/"
+      },
+      "service_defaults": {
+        "office_location": "3rd and 4th Floor, Fatima Arcade, Haile Selassie Road, Blantyre",
+        "contact_phone": "+265 1 824 355 / +265 1 824 668 / +265 1 824 785 / +265 1 824 394",
+        "contact_email": "info@cripc.gov.mw",
+        "online_available": true,
+        "online_url": "https://registrargeneral.gov.mw/"
+      },
+      "service_overrides": {
+        "Register or search a movable-property security interest": {
+          "online_url": "https://ppsr.registrargeneral.gov.mw/"
+        },
+        "Register a movable-property security interest": {
+          "online_url": "https://ppsr.registrargeneral.gov.mw/"
+        },
+        "Search the Personal Property Security Registry": {
+          "online_url": "https://ppsr.registrargeneral.gov.mw/"
+        }
+      },
+      "source_url": "https://registrargeneral.gov.mw/contact-us",
+      "verified_on": "2026-07-28",
+      "evidence": "official-contact-page"
+    },
+    {
+      "agency_name": "Malawi Revenue Authority",
+      "agency_patch": {
+        "address": "Msonkho House, Independence Drive, Private Bag 247, Blantyre, Malawi",
+        "city": "Blantyre",
+        "country": "Malawi",
+        "website": "https://www.mra.mw/"
+      },
+      "service_defaults": {
+        "office_location": "Msonkho House, Independence Drive, Blantyre",
+        "contact_phone": "+265 1 822 588",
+        "contact_email": "mrahq@mra.mw",
+        "online_available": true,
+        "online_url": "https://www.mra.mw/"
+      },
+      "service_overrides": {
+        "Taxpayer registration": {
+          "online_url": "https://eservices.mra.mw/"
+        },
+        "Domestic tax return filing": {
+          "online_url": "https://eservices.mra.mw/"
+        },
+        "Tax return filing information": {
+          "online_url": "https://eservices.mra.mw/"
+        }
+      },
+      "source_url": "https://www.mra.mw/contact",
+      "verified_on": "2026-07-28",
+      "evidence": "official-website-and-official-form"
+    },
+    {
+      "agency_name": "Malawi Investment and Trade Centre",
+      "agency_patch": {
+        "address": "Aquarius House, City Centre, Private Bag 302, Lilongwe, Malawi",
+        "city": "Lilongwe",
+        "country": "Malawi",
+        "website": "https://mitc.mw/"
+      },
+      "service_defaults": {
+        "office_location": "Aquarius House, City Centre, Lilongwe",
+        "contact_phone": "+265 1 770 800",
+        "contact_email": "info@mitc.mw",
+        "online_available": true,
+        "online_url": "https://mitc.mw/"
+      },
+      "source_url": "https://mitc.mw/",
+      "verified_on": "2026-07-28",
+      "evidence": "official-contact-page",
+      "opening_hours": "08:00–16:30"
+    },
+    {
+      "agency_name": "Malawi Bureau of Standards",
+      "agency_patch": {
+        "address": "P.O. Box 946, Blantyre, Malawi",
+        "city": "Blantyre",
+        "country": "Malawi",
+        "website": "https://www.mbsmw.org/"
+      },
+      "service_defaults": {
+        "office_location": "Malawi Bureau of Standards, Blantyre",
+        "contact_phone": "+265 1 870 488 / +265 891 376 444–447; Toll-free 462",
+        "contact_email": "mbs@mbsmw.org",
+        "online_available": true,
+        "online_url": "https://www.mbsmw.org/"
+      },
+      "source_url": "https://www.mbsmw.org/contactUs",
+      "verified_on": "2026-07-28",
+      "evidence": "official-contact-page"
+    },
+    {
+      "agency_name": "Pharmacy and Medicines Regulatory Authority",
+      "agency_patch": {
+        "address": "Off Paul Kagame Road, Lilongwe, Malawi",
+        "city": "Lilongwe",
+        "country": "Malawi",
+        "website": "https://www.pmra.mw/"
+      },
+      "service_defaults": {
+        "office_location": "PMRA, Off Paul Kagame Road, Lilongwe",
+        "contact_phone": "+265 212 755 165 / +265 212 750 108",
+        "contact_email": "info@pmra.mw",
+        "online_available": true,
+        "online_url": "https://www.pmra.mw/"
+      },
+      "source_url": "https://www.pmra.mw/contact-us/",
+      "verified_on": "2026-07-28",
+      "evidence": "official-contact-page"
+    },
+    {
+      "agency_name": "Malawi High Commission in London",
+      "agency_patch": {
+        "address": "36 John Street, Holborn, London WC1N 2AT, United Kingdom",
+        "city": "London",
+        "country": "United Kingdom",
+        "website": "https://www.malawihighcommission.co.uk/"
+      },
+      "service_defaults": {
+        "office_location": "36 John Street, Holborn, London WC1N 2AT",
+        "contact_phone": "+44 (0)20 7421 6010",
+        "contact_email": "london@malawihighcommission.co.uk",
+        "online_available": true,
+        "online_url": "https://www.malawihighcommission.co.uk/"
+      },
+      "source_url": "https://www.malawihighcommission.co.uk/index.php/trade-investment/investment-processes-and-procedures",
+      "verified_on": "2026-07-28",
+      "evidence": "official-mission-website"
+    }
+  ],
+  "service_enrichments": [
+    {
+      "agency_name": "Department of Immigration and Citizenship Services",
+      "service_name": "Apply for an ePassport",
+      "patch": {
+        "requirements": "Complete the official application and provide identity, civil-status and category-specific supporting documents. The portal requires personal and demographic information, a passport-size photo and uploaded supporting documents.",
+        "application_process": "Register through the official ePassport portal, complete the form, upload the required documents, schedule an appointment and attend the selected registration centre for verification and biometrics.",
+        "online_available": true,
+        "online_url": "https://www.epassport.gov.mw/",
+        "office_location": "Authorised passport registration centre selected during the application",
+        "contact_phone": "+265 1 832 565"
+      },
+      "source_url": "https://www.epassport.gov.mw/",
+      "verified_on": "2026-07-28",
+      "evidence": "official-service-portal"
+    },
+    {
+      "agency_name": "Department of Immigration and Citizenship Services",
+      "service_name": "Malawi visa application",
+      "patch": {
+        "requirements": "Valid travel document and visa-category supporting documents are required. Exact requirements depend on nationality and purpose of travel.",
+        "application_process": "Apply through the official Malawi eVisa portal, submit the form and documents, pay the visa and convenience fees using a supported Visa or MasterCard, and await email notification.",
+        "online_available": true,
+        "online_url": "https://evisa.gov.mw/",
+        "office_location": "Online eVisa service",
+        "contact_phone": "+265 1 823 777",
+        "contact_email": "permitcounter@gmail.com"
+      },
+      "source_url": "https://www.immigration.gov.mw/visa/visa-application-process/",
+      "verified_on": "2026-07-28",
+      "evidence": "official-service-page"
+    },
+    {
+      "agency_name": "Department of Immigration and Citizenship Services",
+      "service_name": "Temporary Employment Permit",
+      "patch": {
+        "requirements": "Completed permit application form and category-specific supporting documents from the applicant and sponsor or employer.",
+        "application_process": "Apply in person through a Malawi foreign mission or through a sponsor in Malawi. Applications may be submitted at Immigration Headquarters in Blantyre or Regional Offices in Lilongwe and Mzuzu.",
+        "office_location": "Immigration Headquarters, Blantyre; Regional Offices in Lilongwe and Mzuzu; Malawi foreign missions",
+        "contact_phone": "+265 1 832 565",
+        "online_available": true,
+        "online_url": "https://www.immigration.gov.mw/permits/apply-for-permit/"
+      },
+      "source_url": "https://www.immigration.gov.mw/permits/apply-for-permit/",
+      "verified_on": "2026-07-28",
+      "evidence": "official-service-page"
+    },
+    {
+      "agency_name": "Companies Registration and Intellectual Property Centre",
+      "service_name": "Register a company limited by guarantee",
+      "patch": {
+        "fee_amount": 75000,
+        "fee_currency": "MWK",
+        "office_location": "3rd and 4th Floor, Fatima Arcade, Haile Selassie Road, Blantyre",
+        "contact_phone": "+265 1 824 355 / +265 1 824 668",
+        "contact_email": "info@cripc.gov.mw",
+        "online_available": true,
+        "online_url": "https://registrargeneral.gov.mw/services"
+      },
+      "source_url": "https://registrargeneral.gov.mw/services",
+      "verified_on": "2026-07-28",
+      "evidence": "official-service-page"
+    },
+    {
+      "agency_name": "Malawi Bureau of Standards",
+      "service_name": "Product certification",
+      "patch": {
+        "requirements": "Completed product-certification application, business registration details, MRA number, factory and product information, and identification of applicable Malawi standards.",
+        "application_process": "Complete and submit the official MBS product-certification application. Submission does not itself authorise use of the certification mark; assessment and approval are required.",
+        "office_location": "Malawi Bureau of Standards, P.O. Box 946, Blantyre",
+        "contact_phone": "+265 887 376 444 / 445",
+        "contact_email": "mbs@mbsmw.org",
+        "online_available": true,
+        "online_url": "https://www.mbsmw.org/"
+      },
+      "source_url": "https://www.mbsmw.org/files/STD/MBS-CID-P800-F01%20APPLICATION%20FOR%20LICENCE%20%20FORM.pdf",
+      "verified_on": "2026-07-28",
+      "evidence": "official-application-form"
+    }
+  ]
+}

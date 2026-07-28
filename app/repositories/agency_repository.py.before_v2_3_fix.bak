@@ -1,4 +1,4 @@
-﻿from sqlalchemy import select
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.models.agency import Agency
@@ -8,7 +8,7 @@ from app.schemas.agency import AgencyCreate, AgencyUpdate
 class AgencyRepository:
     @staticmethod
     def create(db: Session, agency_data: AgencyCreate) -> Agency:
-        agency = Agency(**agency_data.model_dump(mode="json"))
+        agency = Agency(**agency_data.model_dump())
 
         db.add(agency)
         db.commit()
@@ -47,7 +47,7 @@ class AgencyRepository:
         agency: Agency,
         agency_data: AgencyUpdate,
     ) -> Agency:
-        update_data = agency_data.model_dump(exclude_unset=True, mode="json")
+        update_data = agency_data.model_dump(exclude_unset=True)
 
         for field, value in update_data.items():
             setattr(agency, field, value)
