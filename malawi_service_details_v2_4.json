@@ -1,0 +1,484 @@
+{
+  "metadata": {
+    "version": "2.4",
+    "verified_on": "2026-07-28",
+    "notes": "Seed structured detail data. Contacts and locations are agency-level records returned by the service details endpoint."
+  },
+  "services": [
+    {
+      "agency_name": "Department of Immigration and Citizenship Services",
+      "service_name": "Apply for an ePassport",
+      "requirements": [
+        {
+          "title": "Completed ePassport application",
+          "description": "Complete the official online ePassport application with accurate personal and demographic information.",
+          "is_mandatory": true
+        },
+        {
+          "title": "Identity and civil-status documents",
+          "description": "Provide the identity, citizenship, birth, marriage or other civil-status documents required for the applicant category.",
+          "is_mandatory": true
+        },
+        {
+          "title": "Passport-size photograph",
+          "description": "Provide a passport-size photograph that meets the portal requirements.",
+          "is_mandatory": true
+        },
+        {
+          "title": "Biometric attendance",
+          "description": "Attend the selected registration centre for verification and biometric capture.",
+          "is_mandatory": true
+        }
+      ],
+      "fees": [
+        {
+          "name": "Passport application fee",
+          "amount": null,
+          "currency": "MWK",
+          "description": "The amount depends on passport type and processing category. Confirm the current official tariff before payment.",
+          "is_mandatory": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Can the whole application be completed online?",
+          "answer": "Pre-registration starts online, but the applicant must attend the selected registration centre for verification and biometrics."
+        },
+        {
+          "question": "Where do I apply?",
+          "answer": "Use the official ePassport portal and select an authorised registration centre during the application."
+        }
+      ],
+      "documents": [
+        {
+          "name": "Identity and citizenship supporting documents",
+          "description": "Category-specific identity, citizenship and civil-status documents requested by the portal.",
+          "is_required": true,
+          "url": "https://www.epassport.gov.mw/",
+          "document_type": "supporting_document",
+          "is_downloadable": false
+        },
+        {
+          "name": "Passport-size photograph",
+          "description": "A compliant passport-size photograph.",
+          "is_required": true,
+          "url": "https://www.epassport.gov.mw/",
+          "document_type": "supporting_document",
+          "is_downloadable": false
+        }
+      ],
+      "contacts": [
+        {
+          "type": "phone",
+          "label": "Immigration Headquarters",
+          "value": "+265 1 832 565",
+          "is_primary": true
+        },
+        {
+          "type": "website",
+          "label": "Official ePassport portal",
+          "value": "https://www.epassport.gov.mw/",
+          "is_primary": true
+        }
+      ],
+      "locations": [
+        {
+          "name": "Immigration Headquarters",
+          "address": "West Wing Government Building, Victoria Avenue",
+          "city": "Blantyre",
+          "district": "Blantyre",
+          "country": "Malawi",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "agency_name": "Department of Immigration and Citizenship Services",
+      "service_name": "Malawi visa application",
+      "requirements": [
+        {
+          "title": "Valid travel document",
+          "description": "A valid passport or other accepted travel document is required.",
+          "is_mandatory": true
+        },
+        {
+          "title": "Visa-category supporting documents",
+          "description": "Provide documents supporting the purpose of travel, accommodation, sponsorship or invitation as required.",
+          "is_mandatory": true
+        },
+        {
+          "title": "Online application",
+          "description": "Complete the official Malawi eVisa application form.",
+          "is_mandatory": true
+        }
+      ],
+      "fees": [
+        {
+          "name": "Visa fee",
+          "amount": null,
+          "currency": "USD",
+          "description": "The fee depends on nationality and visa category. A convenience or processing fee may also apply.",
+          "is_mandatory": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "How do I apply for a Malawi visa?",
+          "answer": "Apply through the official eVisa portal, upload the required documents, pay using a supported card and monitor email notifications."
+        },
+        {
+          "question": "Are requirements the same for every traveller?",
+          "answer": "No. Requirements vary by nationality, purpose of travel and visa category."
+        }
+      ],
+      "documents": [
+        {
+          "name": "Passport biodata page",
+          "description": "A clear copy of the valid travel document biodata page.",
+          "is_required": true,
+          "url": "https://evisa.gov.mw/",
+          "document_type": "supporting_document",
+          "is_downloadable": false
+        },
+        {
+          "name": "Visa-category supporting documents",
+          "description": "Invitation, accommodation, itinerary, sponsor or other documents applicable to the selected category.",
+          "is_required": true,
+          "url": "https://evisa.gov.mw/",
+          "document_type": "supporting_document",
+          "is_downloadable": false
+        }
+      ],
+      "contacts": [
+        {
+          "type": "phone",
+          "label": "Visa and permit enquiries",
+          "value": "+265 1 823 777",
+          "is_primary": true
+        },
+        {
+          "type": "email",
+          "label": "Permit counter",
+          "value": "permitcounter@gmail.com",
+          "is_primary": false
+        },
+        {
+          "type": "website",
+          "label": "Official eVisa portal",
+          "value": "https://evisa.gov.mw/",
+          "is_primary": true
+        }
+      ],
+      "locations": [
+        {
+          "name": "Online eVisa service",
+          "address": "Official Malawi eVisa portal",
+          "city": null,
+          "district": null,
+          "country": "Malawi",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "agency_name": "Department of Immigration and Citizenship Services",
+      "service_name": "Temporary Employment Permit",
+      "requirements": [
+        {
+          "title": "Completed permit application",
+          "description": "Complete the prescribed permit application form.",
+          "is_mandatory": true
+        },
+        {
+          "title": "Applicant supporting documents",
+          "description": "Provide identity, qualification and category-specific supporting documents.",
+          "is_mandatory": true
+        },
+        {
+          "title": "Employer or sponsor documents",
+          "description": "Provide the required supporting documents from the employer or sponsor in Malawi.",
+          "is_mandatory": true
+        }
+      ],
+      "fees": [
+        {
+          "name": "Temporary Employment Permit fee",
+          "amount": null,
+          "currency": "MWK",
+          "description": "Confirm the current permit tariff with Immigration before payment.",
+          "is_mandatory": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Where can the application be submitted?",
+          "answer": "Through a Malawi foreign mission, a sponsor in Malawi, Immigration Headquarters in Blantyre, or regional offices in Lilongwe and Mzuzu."
+        },
+        {
+          "question": "Can an employer submit on behalf of the applicant?",
+          "answer": "A sponsor or employer in Malawi may submit the application with the required supporting documents."
+        }
+      ],
+      "documents": [
+        {
+          "name": "Permit application form",
+          "description": "Completed prescribed Temporary Employment Permit application form.",
+          "is_required": true,
+          "url": "https://www.immigration.gov.mw/permits/apply-for-permit/",
+          "document_type": "supporting_document",
+          "is_downloadable": false
+        },
+        {
+          "name": "Applicant and sponsor supporting documents",
+          "description": "Identity, qualifications, employment and sponsor documents required for the category.",
+          "is_required": true,
+          "url": "https://www.immigration.gov.mw/permits/apply-for-permit/",
+          "document_type": "supporting_document",
+          "is_downloadable": false
+        }
+      ],
+      "contacts": [
+        {
+          "type": "phone",
+          "label": "Immigration Headquarters",
+          "value": "+265 1 832 565",
+          "is_primary": true
+        },
+        {
+          "type": "website",
+          "label": "Permit information",
+          "value": "https://www.immigration.gov.mw/permits/apply-for-permit/",
+          "is_primary": true
+        }
+      ],
+      "locations": [
+        {
+          "name": "Immigration Headquarters",
+          "address": "West Wing Government Building, Victoria Avenue",
+          "city": "Blantyre",
+          "district": "Blantyre",
+          "country": "Malawi",
+          "is_primary": true
+        },
+        {
+          "name": "Immigration Regional Office",
+          "address": "Regional Immigration Office",
+          "city": "Lilongwe",
+          "district": "Lilongwe",
+          "country": "Malawi",
+          "is_primary": false
+        },
+        {
+          "name": "Immigration Regional Office",
+          "address": "Regional Immigration Office",
+          "city": "Mzuzu",
+          "district": "Mzimba",
+          "country": "Malawi",
+          "is_primary": false
+        }
+      ]
+    },
+    {
+      "agency_name": "Companies Registration and Intellectual Property Centre",
+      "service_name": "Register a company limited by guarantee",
+      "requirements": [
+        {
+          "title": "Proposed company information",
+          "description": "Provide the proposed company name, registered office and objects.",
+          "is_mandatory": true
+        },
+        {
+          "title": "Directors and members information",
+          "description": "Provide identification and particulars for directors, members or guarantors.",
+          "is_mandatory": true
+        },
+        {
+          "title": "Constitutional documents",
+          "description": "Submit the memorandum, articles or other prescribed incorporation documents.",
+          "is_mandatory": true
+        }
+      ],
+      "fees": [
+        {
+          "name": "Registration fee",
+          "amount": 75000,
+          "currency": "MWK",
+          "description": "Official service-page amount recorded on 28 July 2026. Confirm before payment.",
+          "is_mandatory": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Can the registration process be started online?",
+          "answer": "Use the Registrar General or CIPC official services portal where the service is available online."
+        },
+        {
+          "question": "What is a company limited by guarantee?",
+          "answer": "It is generally used for non-profit, membership or public-purpose organisations where members guarantee a stated amount rather than hold share capital."
+        }
+      ],
+      "documents": [
+        {
+          "name": "Company incorporation forms",
+          "description": "The prescribed incorporation forms for a company limited by guarantee.",
+          "is_required": true,
+          "url": "https://registrargeneral.gov.mw/services",
+          "document_type": "supporting_document",
+          "is_downloadable": false
+        },
+        {
+          "name": "Directors and guarantors identification",
+          "description": "Identification and particulars required for proposed directors and guarantors.",
+          "is_required": true,
+          "url": "https://registrargeneral.gov.mw/services",
+          "document_type": "supporting_document",
+          "is_downloadable": false
+        },
+        {
+          "name": "Memorandum and articles",
+          "description": "Constitutional documents describing the organisation's objects and governance.",
+          "is_required": true,
+          "url": "https://registrargeneral.gov.mw/services",
+          "document_type": "supporting_document",
+          "is_downloadable": false
+        }
+      ],
+      "contacts": [
+        {
+          "type": "phone",
+          "label": "CIPC enquiries",
+          "value": "+265 1 824 355 / +265 1 824 668",
+          "is_primary": true
+        },
+        {
+          "type": "email",
+          "label": "General enquiries",
+          "value": "info@cripc.gov.mw",
+          "is_primary": true
+        },
+        {
+          "type": "website",
+          "label": "Official services portal",
+          "value": "https://registrargeneral.gov.mw/services",
+          "is_primary": true
+        }
+      ],
+      "locations": [
+        {
+          "name": "CIPC Head Office",
+          "address": "3rd and 4th Floor, Fatima Arcade, Haile Selassie Road",
+          "city": "Blantyre",
+          "district": "Blantyre",
+          "country": "Malawi",
+          "is_primary": true
+        }
+      ]
+    },
+    {
+      "agency_name": "Malawi Bureau of Standards",
+      "service_name": "Product certification",
+      "requirements": [
+        {
+          "title": "Completed certification application",
+          "description": "Complete the official MBS product-certification application form.",
+          "is_mandatory": true
+        },
+        {
+          "title": "Business registration details",
+          "description": "Provide the applicant's business registration particulars.",
+          "is_mandatory": true
+        },
+        {
+          "title": "MRA number",
+          "description": "Provide the applicant's Malawi Revenue Authority registration number where required.",
+          "is_mandatory": true
+        },
+        {
+          "title": "Factory and product information",
+          "description": "Provide details of the factory, manufacturing process and product for assessment.",
+          "is_mandatory": true
+        },
+        {
+          "title": "Applicable Malawi standards",
+          "description": "Identify the Malawi standards applicable to the product.",
+          "is_mandatory": true
+        }
+      ],
+      "fees": [
+        {
+          "name": "Product certification charges",
+          "amount": null,
+          "currency": "MWK",
+          "description": "Assessment, testing, inspection or licence charges depend on the product and certification scope. Confirm the current quotation with MBS.",
+          "is_mandatory": true
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Does submitting the application authorise use of the certification mark?",
+          "answer": "No. Submission alone does not authorise use of the mark; assessment and formal approval are required."
+        },
+        {
+          "question": "Will the factory be assessed?",
+          "answer": "Factory and product assessment may form part of the certification process depending on the applicable scheme."
+        }
+      ],
+      "documents": [
+        {
+          "name": "Product certification application form",
+          "description": "Official MBS application form for a product-certification licence.",
+          "is_required": true,
+          "url": "https://www.mbsmw.org/files/STD/MBS-CID-P800-F01%20APPLICATION%20FOR%20LICENCE%20%20FORM.pdf",
+          "document_type": "supporting_document",
+          "is_downloadable": true
+        },
+        {
+          "name": "Business registration and MRA details",
+          "description": "Business registration evidence and MRA number.",
+          "is_required": true,
+          "url": "https://www.mbsmw.org/",
+          "document_type": "supporting_document",
+          "is_downloadable": false
+        },
+        {
+          "name": "Factory and product technical information",
+          "description": "Technical information supporting assessment against applicable Malawi standards.",
+          "is_required": true,
+          "url": "https://www.mbsmw.org/",
+          "document_type": "supporting_document",
+          "is_downloadable": false
+        }
+      ],
+      "contacts": [
+        {
+          "type": "phone",
+          "label": "MBS enquiries",
+          "value": "+265 887 376 444 / 445",
+          "is_primary": true
+        },
+        {
+          "type": "email",
+          "label": "General enquiries",
+          "value": "mbs@mbsmw.org",
+          "is_primary": true
+        },
+        {
+          "type": "website",
+          "label": "Official website",
+          "value": "https://www.mbsmw.org/",
+          "is_primary": true
+        }
+      ],
+      "locations": [
+        {
+          "name": "Malawi Bureau of Standards",
+          "address": "P.O. Box 946",
+          "city": "Blantyre",
+          "district": "Blantyre",
+          "country": "Malawi",
+          "is_primary": true
+        }
+      ]
+    }
+  ]
+}

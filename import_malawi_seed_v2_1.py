@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 from __future__ import annotations
 import argparse,json,re,time,sys
 from pathlib import Path
@@ -10,18 +10,106 @@ class API:
     def __init__(self,b,t=None):
         self.base=b.rstrip("/"); self.root=self.base[:-7] if self.base.endswith("/api/v1") else self.base
         self.api=self.base if self.base.endswith("/api/v1") else self.base+"/api/v1"; self.t=t
-    def call(self,m,u,p=None):
-        body=None if p is None else json.dumps(p).encode(); h={"Accept":"application/json"}
-        if body is not None:h["Content-Type"]="application/json"
-        if self.t:h["Authorization"]="Bearer "+self.t
-        q=request.Request(u,data=body,method=m,headers=h)
-        try:
-            with request.urlopen(q,timeout=90) as r:
-                x=r.read().decode(); return json.loads(x) if x else None
-        except error.HTTPError as e:
-            raise RuntimeError(f"{m} {u} -> HTTP {e.code}: {e.read().decode(errors='replace')}")
-    def get(self,p):return self.call("GET",self.api+"/"+p)
-    def post(self,p,d):return self.call("POST",self.api+"/"+p,d)
+    def call(self, m, u, p=None):
+        body = None if p is None else json.dumps(p).encode()
+        headers = {"Accept": "application/json"}
+
+        if body is not None:
+            headers["Content-Type"] = "application/json"
+
+        if self.t:
+            headers["Authorization"] = "Bearer " + self.t
+
+        max_attempts = 6
+
+        for attempt in range(1, max_attempts + 1):
+            q = request.Request(
+                u,
+                data=body,
+                method=m,
+                headers=headers,
+            )
+
+            try:
+                with request.urlopen(q, timeout=120) as response:
+                    response_body = response.read().decode()
+                    return json.loads(response_body) if response_body else None
+
+            except error.HTTPError as exc:
+                raise RuntimeError(
+                    f"{m} {u} -> HTTP {exc.code}: "
+                    f"{exc.read().decode(errors='replace')}"
+                )
+
+            except (
+                error.URLError,
+                ConnectionResetError,
+                TimeoutError,
+                OSError,
+            ) as exc:
+                if attempt == max_attempts:
+                    raise RuntimeError(
+                        f"{m} {u} failed after "
+                        f"{max_attempts} attempts: {exc}"
+                    ) from exc
+
+                delay = min(5 * attempt, 30)
+
+                print(
+                    f"[retry] {m} {u} failed "
+                    f"(attempt {attempt}/{max_attempts}): {exc}. "
+                    f"Retrying in {delay} seconds..."
+                )
+
+                time.sleep(delay)
+    def get(self, p):
+        return self.call("GET", self.api + "/" + p)
+
+    def get_all(self, resource, page_size=100):
+        records = []
+        skip = 0
+        seen_ids = set()
+
+        while True:
+            separator = "&" if "?" in resource else "?"
+            page = listv(
+                self.get(
+                    f"{resource}{separator}skip={skip}&limit={page_size}"
+                )
+            )
+
+            if not page:
+                break
+
+            new_records = []
+
+            for record in page:
+                record_id = record.get("id")
+
+                if record_id is None or record_id not in seen_ids:
+                    new_records.append(record)
+
+                    if record_id is not None:
+                        seen_ids.add(record_id)
+
+            if not new_records:
+                print(
+                    f"[pagination] {resource}: "
+                    "no new records returned; stopping"
+                )
+                break
+
+            records.extend(new_records)
+            skip += len(page)
+
+            print(
+                f"[pagination] {resource}: "
+                f"page={len(page)}, total={len(records)}, next_skip={skip}"
+            )
+
+        return records
+    def post(self, p, d):
+        return self.call("POST", self.api + "/" + p, d)
     def spec(self):return self.call("GET",self.root+"/openapi.json")
 def listv(v):
     if isinstance(v,list):return v
@@ -45,7 +133,7 @@ def main():
     print(f"Backend: {a.base_url}\nMode: {'APPLY' if a.apply else 'DRY RUN'}")
     print(f"Dataset: {len(ds['agencies'])} agencies, {len(ds['services'])} services")
     print("Agency API fields:",sorted(af));print("Service API fields:",sorted(sf))
-    old=listv(api.get("agencies"));by={norm(x.get("name","")):x for x in old};ids={}
+    old=api.get_all("agencies");by={norm(x.get("name","")):x for x in old};ids={}
     ca=sa=fa=0
     for x in ds["agencies"]:
         e=by.get(norm(x["name"]))
@@ -56,11 +144,19 @@ def main():
             n=obj(api.post("agencies",d));ids[x["key"]]=int(n["id"]);by[norm(x["name"])]=n;ca+=1
             print(f"[agency:created] {x['name']} -> id={n['id']}");time.sleep(.08)
         except Exception as ex:
-            fa+=1;print(f"[agency:failed] {x['name']}: {ex}",file=sys.stderr)
-            if not a.continue_on_error:raise
+            if "HTTP 409" in str(ex):
+                sa += 1
+                print(f"[agency:exists] {x['name']} -> duplicate reported by API")
+                continue
+
+            fa += 1
+            print(f"[agency:failed] {x['name']}: {ex}", file=sys.stderr)
+
+            if not a.continue_on_error:
+                raise
     if not a.apply:
         print("\nDry run complete. No records were written.");return 0
-    os=listv(api.get("services"));keys={(norm(x.get("name","")),int(x.get("agency_id") or 0)) for x in os}
+    os=api.get_all("services");keys={(norm(x.get("name","")),int(x.get("agency_id") or 0)) for x in os}
     cs=ss=fs=0
     for x in ds["services"]:
         aid=ids.get(x["agency_key"])
@@ -78,9 +174,25 @@ def main():
             n=obj(api.post("services",d));keys.add(key);cs+=1
             print(f"[service:created] {x['name']} -> id={n.get('id')} agency_id={aid}");time.sleep(.08)
         except Exception as ex:
-            fs+=1;print(f"[service:failed] {x['name']}: {ex}",file=sys.stderr)
-            if not a.continue_on_error:raise
+            if "HTTP 409" in str(ex):
+                keys.add(key)
+                ss += 1
+                print(
+                    f"[service:exists] {x['name']} "
+                    f"-> agency_id={aid} duplicate reported by API"
+                )
+                continue
+
+            fs += 1
+            print(f"[service:failed] {x['name']}: {ex}", file=sys.stderr)
+
+            if not a.continue_on_error:
+                raise
     print(f"\nAgencies created={ca}, existed={sa}, failed={fa}")
     print(f"Services created={cs}, existed={ss}, failed={fs}")
     return 0 if fa==0 and fs==0 else 2
 if __name__=="__main__":raise SystemExit(main())
+
+
+
+
